@@ -1,0 +1,44 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile.database
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: crudapp
+      POSTGRES_USER: cruduser
+      POSTGRES_PASSWORD: crudpassword
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USER: cruduser
+      DB_PASSWORD: crudpassword
+      DB_NAME: crudapp
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

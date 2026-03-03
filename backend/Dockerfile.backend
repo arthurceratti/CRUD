@@ -1,0 +1,15 @@
+# Dockerfile.backend
+FROM node:16
+RUN echo "Building backend image..."
+WORKDIR /usr/src/app/
+
+COPY package.json /usr/src/app/
+
+RUN npm install
+
+COPY --chown=node:node . /usr/src/app/
+
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]

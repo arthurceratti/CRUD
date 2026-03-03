@@ -1,0 +1,8 @@
+# Dockerfile.database
+FROM postgres:13
+RUN echo "Building database image..."
+ENV POSTGRES_DB=crudapp
+ENV POSTGRES_USER=cruduser
+ENV POSTGRES_PASSWORD=crudpassword
+
+VOLUME /var/lib/postgresql/data
