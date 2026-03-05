@@ -1,25 +1,33 @@
-// frontend/src/App.js
-import React from 'react';
+import React, { useState } from 'react';
+import Header from './Header';
+import { AppRouter } from './routes';
 import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  // Handle login success
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  // Handle logout - keep this!
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    // Redirect to login after 1 second
+    setTimeout(() => {
+      window.location.hash = '/login';
+    }, 1000);
+  };
   return (
     <div className="App">
-      <h1>CRUD App2</h1>
-      <div id="users">
-        {/* You can add dynamic user cards here using React */}
-        <div className="user-card">
-          <h2>User 1</h2>
-          <p>Email: user1@example.com</p>
-        </div>
-        <div className="user-card">
-          <h2>User 2</h2>
-          <p>Email: user2@example.com</p>
-        </div>
-      </div>
+  
+      <Header onLogout={handleLogout} />
+      
+      <AppRouter />
+      
     </div>
   );
 }
 
 export default App;
-

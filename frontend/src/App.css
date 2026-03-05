@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .App-logo {
@@ -15,13 +19,13 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
 }
 
 .App-link {
@@ -35,4 +39,68 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-header {
+  width: 100%;
+  background-color: #0056b3;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  width: 100%;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.app-header nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.app-header a {
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.app-header a:hover {
+  width: 100%;
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+/* frontend/src/App.css */
+#users {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: none; /* Remove the max-width restriction */
+  padding: 0 20px; /* Add some padding for better spacing */
+}
+
+.user-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.user-card h2 {
+  color: #0056b3;
+  font-size: 1.5rem;
+}
+
+.user-card p {
+  color: #555;
+  font-size: 1rem;
 }
